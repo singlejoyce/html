@@ -1,0 +1,150 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<style type="text/css">
+body
+{
+font-size:70%; 
+font-family:verdana,helvetica,arial,sans-serif;
+}
+</style>
+<style type="text/css">
+.text-gradient {
+     display: inline-block;
+     color: green;
+     font-size: 8em; 
+     font-family: 微软雅黑;
+     background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(rgba(0, 128, 0, 1)), to(rgba(51, 51, 51, 1)));
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;
+}; 
+</style>
+
+</head>
+<body style="margin:0px;">
+
+<hr>   <!-- 这是水平线 -->
+<p class="text-gradient">线条：</p>
+<canvas id="myCanvas1" width="200" height="100" style="border:1px solid #c3c3c3;">
+Your browser does not support the canvas element.
+</canvas> 
+
+<hr>   <!-- 这是水平线 -->
+<p>圆：</p>
+<canvas id="myCanvas2" width="200" height="100" style="border:1px solid #c3c3c3;">
+Your browser does not support the canvas element.
+</canvas> 
+
+<hr>   <!-- 这是水平线 -->
+<p>渐变：</p>
+<canvas id="myCanvas3" width="200" height="100" style="border:1px solid #c3c3c3;">
+Your browser does not support the canvas element.
+</canvas> 
+
+<hr>   <!-- 这是水平线 -->
+<p>图像：</p>
+<canvas id="myCanvas4" width="414" height="539" style="border:1px solid #c3c3c3;">
+Your browser does not support the canvas element.
+</canvas> 
+
+<hr>   <!-- 这是水平线 -->
+<img src='file:///D:/share/pic/1/2016-09-23_111121.png' style='display:none' id='img1' /><br />
+
+
+<hr>   <!-- 这是水平线 -->
+<p>把鼠标悬停在下面的矩形上可以看到坐标：</p>
+<div id="coordiv" style="float:left;width:200px;height:100px;border:1px solid #c3c3c3"
+onmousemove="cnvs_getCoordinates(event)"
+onmouseout="cnvs_clearCoordinates()"></div>
+<br /> 
+<br />
+<br />
+<div id="xycoordinates"></div>
+
+
+<!-- 坐标 -->
+<script type="text/javascript">
+function cnvs_getCoordinates(e)
+{
+x=e.clientX;
+y=e.clientY;
+document.getElementById("xycoordinates").innerHTML="Coordinates: (" + x + "," + y + ")";
+}
+function cnvs_clearCoordinates()
+{
+document.getElementById("xycoordinates").innerHTML="";
+}
+</script>
+
+<!-- 线条 -->
+
+<script type="text/javascript">
+var c=document.getElementById("myCanvas1");
+var cxt=c.getContext("2d");
+cxt.moveTo(10,10);
+cxt.lineTo(150,50);
+cxt.lineTo(10,50);
+cxt.stroke(); 
+</script>
+
+<!-- 圆 -->
+<script type="text/javascript">
+var c=document.getElementById("myCanvas2");
+var cxt=c.getContext("2d");
+cxt.fillStyle="#FF0000";
+cxt.beginPath();
+cxt.arc(70,18,15,0,Math.PI*2,true);
+cxt.closePath();
+cxt.fill();
+</script> 
+
+<!-- 渐变 -->
+<script type="text/javascript">
+var c=document.getElementById("myCanvas3");
+var cxt=c.getContext("2d");
+var grd=cxt.createLinearGradient(0,0,175,50);
+grd.addColorStop(0,"#FF0000");
+grd.addColorStop(1,"#00FF00");
+cxt.fillStyle=grd;
+cxt.fillRect(0,0,175,50);
+</script>
+
+<!-- 图像 -->
+<script type="text/javascript">
+var c=document.getElementById("myCanvas4");
+var cxt=c.getContext("2d");
+var img=new Image()
+var url = window.URL.createObjectURL(document.getElementById(sourceId).files[0])
+img.src=img1
+cxt.drawImage(img,0,0);
+</script> 
+
+<!-- JavaScript读取本地图片到浏览器 -->
+<script type="text/javascript"> 
+	function getFileUrl(sourceId) { 
+		var url; 
+		if (navigator.userAgent.indexOf("MSIE")>=1) { // IE 
+		url = document.getElementById(sourceId).value; 
+	} 
+		else if(navigator.userAgent.indexOf("Firefox")>0) { // Firefox 
+		url = window.URL.createObjectURL(document.getElementById(sourceId).files.item(0)); 
+	} 
+		else if(navigator.userAgent.indexOf("Chrome")>0) { // Chrome 
+		url = window.URL.createObjectURL(document.getElementById(sourceId).files.item(0)); 
+	} 
+		return url; 
+	}
+	function preImg(sourceId, targetId) { 
+		var url = getFileUrl(sourceId); 
+		var imgPre = document.getElementById(targetId); 
+		imgPre.src = url; 
+	} 
+</script> 
+
+
+</body>
+
+
+
+</html> 

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<style type="text/css">
+body{
+	background-image: url("12970934554694.jpg");
+	background-repeat: repeat-y;
+	background-position: right top;
+	background-attachment: fixed;
+}
+h1{
+  font-family: "Oswald";
+  color: #4c4c4c;
+  font-weight: 400;
+  letter-spacing: 2px;
+  font-size: 28px;
+  line-height: 48px;
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  clear: both;
+  position: relative;
+  padding: 0 10px;
+}
+p1{
+	width:80%;
+	color: #271305;
+	font-size:17px;
+	font-family:Comic Sans MS,arial,helvetica,sans-serif;
+	line-height: 150%;
+}
+p{
+  font-family: "Oswald";
+  color: #4ecdc4;
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 10;
+  letter-spacing: 1px;
+}
+
+</style>
+
+<body>
+<h1>JavaScript Math.random()</h1>
+<p>Every time you click the button, getRndInteger(min, max) returns a random number between 1 and 10 (both included):</p>
+<button onclick="document.getElementById('p_random').innerHTML = getRndInteger(1,10)">Click Me</button>
+<p1 id="p_random"></p1>
+<br>
+<hr>
+
+<h1>JavaScript Arrays</h1>
+<p>The best way to loop through an array is using a standard for loop:</p>
+<button onclick="myArrayLoop()">Try it</button>
+<p1 id="p_loop"></p1>
+<br>
+<hr>
+
+<h1>JavaScript Array Methods</h1>
+
+<p>The pop() method removes the last element from an array,
+<br>The pop() method returns the value that was "popped out":</p>
+<button onclick="myArrayPop()">Try it</button>
+<p1 id="p_pop"></p1>
+<br>
+
+<p>The push() method adds a new element to an array (at the end),
+<br>The push() method returns the new array length:</p>
+<button onclick="myArrayPush()">Try it</button>
+<p1 id="p_push"></p1>
+<br>
+
+<p>The shift() method removes the first array element and "shifts" all other elements to a lower index,
+<br>The push() method returns the new array length:</p>
+<button onclick="myArrayShift()">Try it</button>
+<p1 id="p_shift"></p1>
+<br>
+
+<p>The unshift() method adds a new element to an array (at the beginning), and "unshifts" older elements,
+<br>The unshift() method returns the new array length:</p>
+<button onclick="myArrayUnshift()">Try it</button>
+<p1 id="p_unshift"></p1>
+<br>
+
+<p>The splice() method can be used to add new items to an array:</p>
+<button onclick="myArraySplice_1()">Try it</button>
+<button onclick="myArraySplice_2()">Try it 2</button>
+<p1 id="p_splice"></p1>
+<p1 id="p_splice1"></p1>
+<br>
+
+<p>The slice() method can take two arguments like slice(1, 3).
+<br>The method then selects elements from the start argument, and up to (but not including) the end argument.
+<br>If the end argument is omitted, like in the first examples, the slice() method slices out the rest of the array.</p>
+<button onclick="myArraySlice()">Try it</button>
+<p1 id="p_slice"></p1>
+<br>
+
+<script>
+
+function getRndInteger(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
+
+
+function myArrayLoop() {
+	var fruits = ["Banana", "Orange", "Apple", "Mango"];
+	var text = "<ul>";
+	for (var i = 0; i < fruits.length; i++) {
+		text += "<li>" + fruits[i] + "</li>";
+	}
+	text += "</ul>";
+	document.getElementById("p_loop").innerHTML = text;
+}
+
+function myArrayPop() {
+	var fruits = ["Banana", "Orange", "Apple", "Mango"];
+	document.getElementById("p_pop").innerHTML = "fruits.pop()=" + fruits.pop() + "<br>fruits=" + fruits;
+}
+
+function myArrayPush() {
+	var fruits = ["Banana", "Orange", "Apple", "Mango"];
+	document.getElementById("p_push").innerHTML = "fruits.push(\"Kiwi\")=" + fruits.push("Kiwi") + "<br>fruits=" + fruits;
+}
+
+function myArrayShift() {	
+	var fruits = ["Banana", "Orange", "Apple", "Mango"];
+	document.getElementById("p_shift").innerHTML = "fruits.shift()=" + fruits.shift() + "<br>fruits=" + fruits;
+}
+
+function myArrayUnshift() {
+	var fruits = ["Banana", "Orange", "Apple", "Mango"];
+	document.getElementById("p_unshift").innerHTML = "fruits.unshift(\"Lemon\")=" + fruits.unshift("Lemon") + "<br>fruits=" + fruits;
+}
+
+function myArraySplice_1() {
+	var fruits = ["Banana", "Orange", "Apple", "Mango"];
+	fruits.splice(2, 0, "Lemon", "Kiwi");
+	//The first parameter (2) defines the position where new elements should be added (spliced in).
+	//The second parameter (0) defines how many elements should be removed.
+	//The rest of the parameters ("Lemon" , "Kiwi") define the new elements to be added.
+	document.getElementById("p_splice").innerHTML = "fruits.splice(2, 0, \"Lemon\", \"Kiwi\"))=" + fruits;
+}
+
+function myArraySplice_2() {
+	var fruits = ["Banana", "Orange", "Apple", "Mango"];
+	fruits.splice(0, 1);        // Removes the first element of fruits
+	document.getElementById("p_splice1").innerHTML = "fruits.splice(0, 1)=" + fruits;
+	//The first parameter (0) defines the position where new elements should be added (spliced in).
+	//The second parameter (1) defines how many elements should be removed.
+	//The rest of the parameters are omitted. No new elements will be added.
+}
+
+function myArraySlice() {
+	var fruits = ["Banana", "Orange", "Apple", "Mango"];
+	var citrus = fruits.slice(1, 3);
+	var citrus2 = fruits.slice(2);
+	document.getElementById("p_slice").innerHTML = fruits + "<br>fruits.slice(1, 3)=" + citrus + "<br>fruits.slice(2)=" + citrus2;
+	
+}
+
+
+</script>
+
+</body>
+</html>
